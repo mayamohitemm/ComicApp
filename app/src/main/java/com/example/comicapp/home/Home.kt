@@ -119,7 +119,13 @@ fun Scaffold(
             } else {
                 val comicList: List<ComicModel> =
                     (comicListResult as UiState.Success<List<ComicModel>>).data
-                HomeContent(Modifier.fillMaxSize(), comicList, pagerState, pagerSwipeCallback)
+                HomeContent(
+                    Modifier.fillMaxSize(),
+                    comicList,
+                    pagerState,
+                    pagerSwipeCallback,
+                    selectedComic
+                )
             }
         }
     }
@@ -131,9 +137,28 @@ fun Scaffold(
 fun HomeContent(
     modifier: Modifier, comicList: List<ComicModel>,
     pagerState: PagerState,
-    pagerSwipeCallback: (comic: ComicModel) -> Unit
+    pagerSwipeCallback: (comic: ComicModel) -> Unit,
+    selectedComic: ComicModel,
 ) {
     Box(modifier = modifier) {
+        Box(modifier = Modifier.align(Alignment.TopCenter)) {
+            Text(
+                text = buildAnnotatedString {
+                    withStyle(
+                        style = SpanStyle(
+                            color = Color.White,
+                            background = Color.Black,
+                            fontWeight = FontWeight.Bold
+                        )
+                    ) {
+                        append(selectedComic.comicName.toString())
+                    }
+                },
+                textAlign = TextAlign.Center,
+                modifier = Modifier.padding(all = 10.dp),
+            )
+        }
+
         PagerView(comicList, pagerState, pagerSwipeCallback)
     }
 }
