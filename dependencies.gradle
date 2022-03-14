@@ -1,12 +1,22 @@
 ext {
     versions = [
-            compileSdk: 32,
-            targetSdk : 32,
-            minSdk    : 21,
-            java      : JavaVersion.VERSION_1_8,
+            compileSdk           : 32,
+            targetSdk            : 32,
+            minSdk               : 21,
+            java                 : JavaVersion.VERSION_1_8,
+            retrofitVersion      : '2.9.0',
+            moshiVersion         : '2.9.0',
+            interceptorVersion   : '4.2.1',
+            hiltVersion          : '2.38.1',
+            hiltNavigationVersion: '1.0.0',
 
     ]
     libraries = [
-
+            retrofit      : "com.squareup.retrofit2:retrofit:$versions.retrofitVersion",
+            moshi         : "com.squareup.retrofit2:converter-moshi:$versions.moshiVersion",
+            interceptor   : "com.squareup.okhttp3:logging-interceptor:$versions.interceptorVersion",
+            hilt          : "com.google.dagger:hilt-android:$versions.hiltVersion",
+            hiltCompiler  : "com.google.dagger:hilt-compiler:$versions.hiltVersion",
+            hiltNavigation: "androidx.hilt:hilt-navigation-compose:$versions.hiltNavigationVersion",
     ]
 }

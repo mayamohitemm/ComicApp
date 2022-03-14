@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -58,4 +59,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+    //Hilt
+    implementation libraries.hilt
+    implementation libraries.hiltNavigation
+    kapt(libraries.hiltCompiler)
+    //Retrofit
+    implementation libraries.retrofit
+    implementation libraries.moshi
+    implementation libraries.interceptor
 }
