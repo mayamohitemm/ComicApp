@@ -1,8 +1,6 @@
 buildscript {
     apply from: 'dependencies.gradle'
-    ext {
-        compose_version = '1.0.1'
-    }
+
     dependencies {
         classpath libraries.hiltPlugin
     }
