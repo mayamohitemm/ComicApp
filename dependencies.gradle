@@ -9,6 +9,9 @@ ext {
             interceptorVersion   : '4.2.1',
             hiltVersion          : '2.41',
             hiltNavigationVersion: '1.0.0',
+            coilVersion          : '2.0.0-rc01',
+            pagerVersion         : '0.23.0',
+            insetsVersion        : '0.23.0',
 
     ]
     libraries = [
@@ -19,5 +22,8 @@ ext {
             hiltCompiler  : "com.google.dagger:hilt-compiler:$versions.hiltVersion",
             hiltNavigation: "androidx.hilt:hilt-navigation-compose:$versions.hiltNavigationVersion",
             hiltPlugin    : "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltVersion",
+            coil          : "io.coil-kt:coil-compose:$versions.coilVersion",
+            pager         : "com.google.accompanist:accompanist-pager:$versions.pagerVersion",
+            insets        : "com.google.accompanist:accompanist-insets:$versions.insetsVersion",
     ]
 }
