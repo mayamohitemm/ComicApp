@@ -1,0 +1,12 @@
+ext {
+    versions = [
+            compileSdk: 32,
+            targetSdk : 32,
+            minSdk    : 21,
+            java      : JavaVersion.VERSION_1_8,
+
+    ]
+    libraries = [
+
+    ]
+}
