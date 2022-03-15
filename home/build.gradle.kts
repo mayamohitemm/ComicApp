@@ -1,28 +1,22 @@
 plugins {
-    id(BuildPlugins.application)
+    id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
-    id(BuildPlugins.hilt)
 }
 
 android {
     compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId = ConfigData.APPLICATION_ID
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdkVersion
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
 
         testInstrumentationRunner = DependingOn.AndroidTest.androidJUnitRunner
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -37,22 +31,9 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
-    }
-    packagingOptions {
-        resources {
-            excludes.add("/META-INF/{AL2.0,LGPL2.1}")
-        }
-    }
 }
 
 dependencies {
-    api(project(":commonui"))
-    api(project(":home"))
     //Compose
     implementation(DependingOn.AndroidX.coreKtx)
     implementation(DependingOn.Compose.composeUi)
@@ -75,9 +56,4 @@ dependencies {
     implementation(DependingOn.Accompanist.pager)
     //Insets
     implementation(DependingOn.Accompanist.insets)
-    //Test
-    testImplementation(DependingOn.Test.jUnit)
-    androidTestImplementation(DependingOn.Test.extJunit)
-    androidTestImplementation(DependingOn.AndroidTest.espresso)
-    androidTestImplementation(DependingOn.AndroidTest.compose)
 }

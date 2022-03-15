@@ -9,7 +9,7 @@ import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.comicapp.home.HomeScreen
 import com.example.comicapp.home.HomeScreenViewModel
-import com.example.comicapp.ui.theme.ComicAppTheme
+import com.example.commonui.theme.ComicAppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import dagger.hilt.android.AndroidEntryPoint
 

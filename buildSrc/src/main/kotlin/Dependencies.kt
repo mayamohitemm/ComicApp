@@ -7,6 +7,7 @@ object BuildPlugins {
     val kotlinAndroid by lazy { "org.jetbrains.kotlin.android" }
     val kotlinKapt by lazy { "kotlin-kapt" }
     val hilt by lazy { "dagger.hilt.android.plugin" }
+    val androidLibrary = "com.android.library"
 }
 
 object DependingOn {

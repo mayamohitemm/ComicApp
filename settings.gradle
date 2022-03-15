@@ -14,3 +14,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "ComicApp"
 include ':app'
+include ':common'
+include ':commonui'
+include ':home'

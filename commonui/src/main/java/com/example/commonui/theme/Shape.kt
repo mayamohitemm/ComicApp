@@ -1,4 +1,4 @@
-package com.example.comicapp.ui.theme
+package com.example.commonui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

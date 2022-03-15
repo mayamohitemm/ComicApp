@@ -7,8 +7,6 @@ buildscript {
     dependencies {
         classpath(DependingOn.GradlePlugin.hilt)
     }
-
-
 }
 plugins {
     id("com.android.application") version "7.1.2" apply false
@@ -19,6 +17,3 @@ plugins {
 tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }
-//task clean(type: Delete) {
-//    delete rootProject.buildDir
-//}
