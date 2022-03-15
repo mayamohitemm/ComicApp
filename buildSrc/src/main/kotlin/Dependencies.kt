@@ -4,7 +4,7 @@ object BuildPlugins {
     val application by lazy { "com.android.application" }
     val library by lazy { "com.android.library" }
     val android by lazy { "android" }
-    val kotlinAndroid by lazy { "kotlin-android" }
+    val kotlinAndroid by lazy { "org.jetbrains.kotlin.android" }
     val kotlinKapt by lazy { "kotlin-kapt" }
     val hilt by lazy { "dagger.hilt.android.plugin" }
 }
@@ -34,7 +34,6 @@ object DependingOn {
         val composeUi by lazy { "androidx.compose.ui:ui:${Versions.compose}" }
         val composeMaterial by lazy { "androidx.compose.material:material:${Versions.compose}" }
         val composePreview by lazy { "androidx.compose.ui:ui-tooling-preview:${Versions.compose}" }
-        val composeAndroidTest by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
         val composeUiTool by lazy { "androidx.compose.ui:ui-tooling:${Versions.compose}" }
     }
 
@@ -42,17 +41,24 @@ object DependingOn {
         val runtime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.runtimeKtx}" }
     }
 
+    object AndroidX {
+        val coreKtx by lazy { "androidx.core:core-ktx:${Versions.coreKtx}" }
+    }
+
     object Test {
         val jUnit by lazy { "junit:junit:${Versions.junit}" }
         val extJunit by lazy { "androidx.test.ext:junit:${Versions.extJunit}" }
-
     }
 
     object AndroidTest {
         val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
+        val compose by lazy {"androidx.compose.ui:ui-test-junit4:${Versions.compose}"}
+        val androidJUnitRunner by lazy { "androidx.test.runner.AndroidJUnitRunner" }
     }
 
     object GradlePlugin {
+        val kotlinGradlePlugin by lazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" }
+        val androidGradlePlugin by lazy { "com.android.tools.build:gradle:${Versions.androidGradlePlugin}" }
         val hilt by lazy { "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}" }
     }
 }

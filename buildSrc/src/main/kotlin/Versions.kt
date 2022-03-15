@@ -13,4 +13,7 @@ object Versions {
     const val junit = "4.13.2"
     const val extJunit = "1.1.3"
     const val espresso = "3.4.0"
+    const val androidGradlePlugin = "7.1.2"
+    const val kotlin = "1.5.21"
+    const val coreKtx = "1.7.0"
 }
