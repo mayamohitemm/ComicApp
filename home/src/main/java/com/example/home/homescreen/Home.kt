@@ -274,5 +274,3 @@ fun ErrorMessage(errorMessage: String) {
         Text(text = errorMessage, textAlign = TextAlign.Center, color = Color.Black)
     }
 }
-
-
