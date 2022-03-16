@@ -45,4 +45,6 @@ dependencies {
     implementation(DependingOn.Hilt.hiltAndroid)
     implementation(DependingOn.Hilt.hiltNavigation)
     kapt(DependingOn.Hilt.hiltCompiler)
+    //Test
+    testImplementation(DependingOn.Test.jUnit)
 }

@@ -66,4 +66,9 @@ dependencies {
     implementation(DependingOn.Accompanist.pager)
     //Insets
     implementation(DependingOn.Accompanist.insets)
+    //Test
+    testImplementation(DependingOn.Test.jUnit)
+    androidTestImplementation(DependingOn.Test.extJunit)
+    androidTestImplementation(DependingOn.AndroidTest.espresso)
+    androidTestImplementation(DependingOn.AndroidTest.compose)
 }
