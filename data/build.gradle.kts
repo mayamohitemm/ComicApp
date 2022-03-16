@@ -1,6 +1,8 @@
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kotlinKapt)
+    id(BuildPlugins.hilt)
 }
 
 android {
@@ -30,15 +32,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.compose
-    }
 }
 
 dependencies {
-    implementation(DependingOn.Compose.composeUi)
-    implementation(DependingOn.Compose.composeMaterial)
+    implementation(project(":domain"))
+    implementation(project(":common"))
+    //Retrofit
+    implementation(DependingOn.Retrofit.retrofit)
+    implementation(DependingOn.Retrofit.moshi)
+    implementation(DependingOn.Retrofit.interceptor)
+    //Hilt
+    implementation(DependingOn.Hilt.hiltAndroid)
+    implementation(DependingOn.Hilt.hiltNavigation)
+    kapt(DependingOn.Hilt.hiltCompiler)
 }

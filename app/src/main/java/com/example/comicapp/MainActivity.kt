@@ -7,8 +7,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.core.view.WindowCompat
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.comicapp.home.HomeScreen
-import com.example.comicapp.home.HomeScreenViewModel
+import com.example.home.homescreen.HomeScreen
+import com.example.home.homescreen.HomeScreenViewModel
 import com.example.commonui.theme.ComicAppTheme
 import com.google.accompanist.insets.ProvideWindowInsets
 import dagger.hilt.android.AndroidEntryPoint

@@ -2,16 +2,16 @@ buildscript {
     repositories {
         google()
         mavenCentral()
-        maven("https://plugins.gradle.org/m2/")
+        maven("https://maven.google.com")
     }
     dependencies {
         classpath(DependingOn.GradlePlugin.hilt)
     }
 }
 plugins {
-    id("com.android.application") version "7.1.2" apply false
-    id("com.android.library") version "7.1.2" apply false
-    id("org.jetbrains.kotlin.android") version "1.5.21" apply false
+    DependingOn.AppPlugins.plugins.forEach {
+        id(it.first) version it.second apply it.third
+    }
 }
 
 tasks.register("clean", Delete::class) {

@@ -31,9 +31,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
 }
 
 dependencies {
+    implementation(project(":common"))
+    implementation(project(":commonui"))
+    implementation(project(":data"))
+    implementation(project(":domain"))
     //Compose
     implementation(DependingOn.AndroidX.coreKtx)
     implementation(DependingOn.Compose.composeUi)

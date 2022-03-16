@@ -1,6 +1,8 @@
 plugins {
     id(BuildPlugins.androidLibrary)
     id(BuildPlugins.kotlinAndroid)
+    id(BuildPlugins.kotlinKapt)
+    id(BuildPlugins.hilt)
 }
 
 android {
@@ -34,10 +36,10 @@ android {
 
 dependencies {
 
-//    implementation("androidx.core:core-ktx:1.7.0")
-//    implementation("androidx.appcompat:appcompat:1.3.0")
-//    implementation("com.google.android.material:material:1.4.0")
-//    testImplementation("junit:junit:4.13.2")
-//    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-//    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(DependingOn.AndroidX.coreKtx)
+    implementation(DependingOn.Lifecycle.runtime)
+    //Hilt
+    implementation(DependingOn.Hilt.hiltAndroid)
+    implementation(DependingOn.Hilt.hiltNavigation)
+    kapt(DependingOn.Hilt.hiltCompiler)
 }

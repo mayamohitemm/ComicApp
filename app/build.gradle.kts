@@ -51,8 +51,8 @@ android {
 }
 
 dependencies {
-    api(project(":commonui"))
-    api(project(":home"))
+    implementation(project(":commonui"))
+    implementation(project(":home"))
     //Compose
     implementation(DependingOn.AndroidX.coreKtx)
     implementation(DependingOn.Compose.composeUi)
@@ -61,20 +61,12 @@ dependencies {
     implementation(DependingOn.Lifecycle.runtime)
     implementation(DependingOn.Compose.activityCompose)
     debugImplementation(DependingOn.Compose.composeUiTool)
+    //Insets
+    implementation(DependingOn.Accompanist.insets)
     //Hilt
     implementation(DependingOn.Hilt.hiltAndroid)
     implementation(DependingOn.Hilt.hiltNavigation)
     kapt(DependingOn.Hilt.hiltCompiler)
-    //Retrofit
-    implementation(DependingOn.Retrofit.retrofit)
-    implementation(DependingOn.Retrofit.moshi)
-    implementation(DependingOn.Retrofit.interceptor)
-    //Coil
-    implementation(DependingOn.Accompanist.coil)
-    //Pager
-    implementation(DependingOn.Accompanist.pager)
-    //Insets
-    implementation(DependingOn.Accompanist.insets)
     //Test
     testImplementation(DependingOn.Test.jUnit)
     androidTestImplementation(DependingOn.Test.extJunit)

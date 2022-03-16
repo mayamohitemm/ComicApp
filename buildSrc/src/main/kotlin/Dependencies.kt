@@ -1,3 +1,4 @@
+import org.gradle.kotlin.dsl.PluginDependenciesSpecScope
 import org.gradle.kotlin.dsl.provideDelegate
 
 object BuildPlugins {
@@ -11,6 +12,14 @@ object BuildPlugins {
 }
 
 object DependingOn {
+
+    object AppPlugins{
+        val plugins  :List<Triple<String, String, Boolean>> = listOf(
+            Triple("com.android.application" , "7.1.2" ,false),
+            Triple("com.android.library" , "7.1.2" ,false),
+            Triple("org.jetbrains.kotlin.android" , "1.5.21" ,false),
+        )
+    }
 
     object Accompanist {
         val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
