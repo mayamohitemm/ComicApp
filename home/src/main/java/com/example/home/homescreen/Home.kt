@@ -1,5 +1,6 @@
 package com.example.home.homescreen
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -18,6 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.domain.Result
@@ -125,7 +127,7 @@ fun Scaffold(
                     comicList,
                     pagerState,
                     pagerSwipeCallback,
-                    selectedComic
+                    selectedComic,
                 )
             }
         }
@@ -222,7 +224,7 @@ fun HomeAppBar(
 fun PagerView(
     comicList: List<ComicModel>,
     pagerState: PagerState,
-    selectedComic: (comic: ComicModel) -> Unit
+    selectedComic: (comic: ComicModel) -> Unit,
 ) {
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -230,10 +232,13 @@ fun PagerView(
         }
     }
     Box(
-        Modifier
-            .fillMaxSize()
-            .background(Color.Transparent)
+        Modifier.fillMaxSize()
     ) {
+        var animState by remember { mutableStateOf(CardAnimationState.COLLAPSED) }
+        val value by animateFloatAsState(
+            if (animState == CardAnimationState.COLLAPSED) 0.5f else 1.0f,
+        )
+
         Box(
             Modifier
                 .align(Alignment.BottomStart)
@@ -245,10 +250,17 @@ fun PagerView(
                 contentPadding = PaddingValues(all = 16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(300.dp)
+                    .fillMaxHeight(value)
             ) { page ->
                 PagerItem(
-                    imageUrl = comicList[page].imageUrl
+                    imageUrl = comicList[page].imageUrl,
+                    width = value,
+                    onClick = {
+                        animState = when (animState) {
+                            CardAnimationState.COLLAPSED -> CardAnimationState.EXPANDED
+                            CardAnimationState.EXPANDED -> CardAnimationState.COLLAPSED
+                        }
+                    }
                 )
             }
         }

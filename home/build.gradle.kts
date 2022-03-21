@@ -56,10 +56,6 @@ dependencies {
     implementation(DependingOn.Hilt.hiltAndroid)
     implementation(DependingOn.Hilt.hiltNavigation)
     kapt(DependingOn.Hilt.hiltCompiler)
-    //Retrofit
-    implementation(DependingOn.Retrofit.retrofit)
-    implementation(DependingOn.Retrofit.moshi)
-    implementation(DependingOn.Retrofit.interceptor)
     //Coil
     implementation(DependingOn.Accompanist.coil)
     //Pager
