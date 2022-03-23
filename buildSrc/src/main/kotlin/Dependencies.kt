@@ -9,15 +9,16 @@ object BuildPlugins {
     val kotlinKapt by lazy { "kotlin-kapt" }
     val hilt by lazy { "dagger.hilt.android.plugin" }
     val androidLibrary = "com.android.library"
+    val ktor by lazy { "kotlinx-serialization" }
 }
 
 object DependingOn {
 
-    object AppPlugins{
-        val plugins  :List<Triple<String, String, Boolean>> = listOf(
-            Triple("com.android.application" , "7.1.2" ,false),
-            Triple("com.android.library" , "7.1.2" ,false),
-            Triple("org.jetbrains.kotlin.android" , "1.5.21" ,false),
+    object AppPlugins {
+        val plugins: List<Triple<String, String, Boolean>> = listOf(
+            Triple("com.android.application", "7.1.2", false),
+            Triple("com.android.library", "7.1.2", false),
+            Triple("org.jetbrains.kotlin.android", "1.5.21", false),
         )
     }
 
@@ -31,6 +32,13 @@ object DependingOn {
         val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofit}" }
         val moshi by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.moshi}" }
         val interceptor by lazy { "com.squareup.okhttp3:logging-interceptor:${Versions.interceptor}" }
+    }
+
+    object Ktor {
+        val ktor by lazy { "io.ktor:ktor-client-android:${Versions.ktor}" }
+        val logging by lazy { "io.ktor:ktor-client-logging-jvm:${Versions.ktor}" }
+        val serialisation by lazy { "io.ktor:ktor-client-serialization:${Versions.ktor}" }
+        val jsonSerialisation by lazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2" }
     }
 
     object Hilt {
@@ -62,7 +70,7 @@ object DependingOn {
 
     object AndroidTest {
         val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
-        val compose by lazy {"androidx.compose.ui:ui-test-junit4:${Versions.compose}"}
+        val compose by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
         val androidJUnitRunner by lazy { "androidx.test.runner.AndroidJUnitRunner" }
     }
 
@@ -70,5 +78,6 @@ object DependingOn {
         val kotlinGradlePlugin by lazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" }
         val androidGradlePlugin by lazy { "com.android.tools.build:gradle:${Versions.androidGradlePlugin}" }
         val hilt by lazy { "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}" }
+        val ktor by lazy { "org.jetbrains.kotlin:kotlin-serialization:${Versions.kotlin}" }
     }
 }

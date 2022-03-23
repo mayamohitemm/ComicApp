@@ -3,6 +3,7 @@ plugins {
     id(BuildPlugins.kotlinAndroid)
     id(BuildPlugins.kotlinKapt)
     id(BuildPlugins.hilt)
+    id(BuildPlugins.ktor)
 }
 
 android {
@@ -37,10 +38,11 @@ android {
 dependencies {
     implementation(project(":domain"))
     implementation(project(":common"))
-    //Retrofit
-    implementation(DependingOn.Retrofit.retrofit)
-    implementation(DependingOn.Retrofit.moshi)
-    implementation(DependingOn.Retrofit.interceptor)
+    //Ktor
+    implementation(DependingOn.Ktor.ktor)
+    implementation(DependingOn.Ktor.logging)
+    implementation(DependingOn.Ktor.serialisation)
+    implementation(DependingOn.Ktor.jsonSerialisation)
     //Hilt
     implementation(DependingOn.Hilt.hiltAndroid)
     implementation(DependingOn.Hilt.hiltNavigation)

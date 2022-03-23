@@ -1,14 +1,15 @@
 package com.example.data.remote
 
 import com.example.data.dto.ComicDto
-import retrofit2.http.GET
-import retrofit2.http.Query
+import io.ktor.client.*
+import io.ktor.client.request.*
+import javax.inject.Inject
 
-interface ComicApi {
+private const val BASE_URL = "https://gateway.marvel.com/v1/public/"
 
-    @GET("comics")
+class ComicApi @Inject constructor(private val client: HttpClient) {
+
     suspend fun getComicList(
-        @Query("offset") offset: Int = 0,
-        @Query("limit") limit: Int = 20,
-    ): ComicDto?
+    ): ComicDto? = client.get("${BASE_URL}comics")
+
 }

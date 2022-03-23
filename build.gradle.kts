@@ -6,6 +6,7 @@ buildscript {
     }
     dependencies {
         classpath(DependingOn.GradlePlugin.hilt)
+        classpath(DependingOn.GradlePlugin.ktor)
     }
 }
 plugins {
