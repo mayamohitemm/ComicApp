@@ -13,11 +13,11 @@ object BuildPlugins {
 
 object DependingOn {
 
-    object AppPlugins{
-        val plugins  :List<Triple<String, String, Boolean>> = listOf(
-            Triple("com.android.application" , "7.1.2" ,false),
-            Triple("com.android.library" , "7.1.2" ,false),
-            Triple("org.jetbrains.kotlin.android" , "1.5.21" ,false),
+    object AppPlugins {
+        val plugins: List<Triple<String, String, Boolean>> = listOf(
+            Triple("com.android.application", "7.1.2", false),
+            Triple("com.android.library", "7.1.2", false),
+            Triple("org.jetbrains.kotlin.android", "1.5.21", false),
         )
     }
 
@@ -25,6 +25,7 @@ object DependingOn {
         val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
         val pager by lazy { "com.google.accompanist:accompanist-pager:${Versions.pager}" }
         val insets by lazy { "com.google.accompanist:accompanist-insets:${Versions.insets}" }
+        val systemUiController by lazy { "com.google.accompanist:accompanist-systemuicontroller:0.15.0" }
     }
 
     object Retrofit {
@@ -62,7 +63,7 @@ object DependingOn {
 
     object AndroidTest {
         val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
-        val compose by lazy {"androidx.compose.ui:ui-test-junit4:${Versions.compose}"}
+        val compose by lazy { "androidx.compose.ui:ui-test-junit4:${Versions.compose}" }
         val androidJUnitRunner by lazy { "androidx.test.runner.AndroidJUnitRunner" }
     }
 

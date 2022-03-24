@@ -1,8 +1,10 @@
 package com.example.home.homescreen
 
+import androidx.compose.animation.*
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -19,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberImagePainter
 import com.example.domain.Result
@@ -87,6 +88,8 @@ fun Scaffold(
     pagerSwipeCallback: (comic: ComicModel) -> Unit,
     selectedComic: ComicModel,
 ) {
+    var animState by remember { mutableStateOf(CardAnimationState.COLLAPSED) }
+
     Box {
         if (!showError) {
             Image(
@@ -104,11 +107,22 @@ fun Scaffold(
             scaffoldState = scaffoldState,
             backgroundColor = Color.Transparent,
             topBar = {
-                HomeAppBar(
-                    backgroundColor = Color.Transparent,
-                    scaffoldState = scaffoldState,
-                    coroutineState = coroutineState,
-                    titleModifier = Modifier.fillMaxWidth()
+                AnimatedVisibility(
+                    visible = animState == CardAnimationState.COLLAPSED,
+                    content = {
+                        HomeAppBar(
+                            backgroundColor = Color.Transparent,
+                            scaffoldState = scaffoldState,
+                            coroutineState = coroutineState,
+                            titleModifier = Modifier.fillMaxWidth()
+                        )
+                    },
+                    enter = expandVertically(
+                        animationSpec = tween(500, easing = LinearEasing)
+                    ),
+                    exit = shrinkVertically(
+                        animationSpec = tween(500, easing = LinearEasing)
+                    ),
                 )
             },
             drawerContent = {
@@ -128,6 +142,13 @@ fun Scaffold(
                     pagerState,
                     pagerSwipeCallback,
                     selectedComic,
+                    pagerItemClick = {
+                        animState = when (animState) {
+                            CardAnimationState.COLLAPSED -> CardAnimationState.EXPANDED
+                            CardAnimationState.EXPANDED -> CardAnimationState.COLLAPSED
+                        }
+                    },
+                    animState = animState
                 )
             }
         }
@@ -142,6 +163,8 @@ fun HomeContent(
     pagerState: PagerState,
     pagerSwipeCallback: (comic: ComicModel) -> Unit,
     selectedComic: ComicModel,
+    pagerItemClick: () -> Unit,
+    animState: CardAnimationState,
 ) {
     Box(modifier = modifier) {
         Box(modifier = Modifier.align(Alignment.TopCenter)) {
@@ -162,7 +185,7 @@ fun HomeContent(
             )
         }
 
-        PagerView(comicList, pagerState, pagerSwipeCallback)
+        PagerView(comicList, pagerState, pagerSwipeCallback, pagerItemClick, animState)
     }
 }
 
@@ -225,6 +248,8 @@ fun PagerView(
     comicList: List<ComicModel>,
     pagerState: PagerState,
     selectedComic: (comic: ComicModel) -> Unit,
+    pagerItemClick: () -> Unit,
+    animState: CardAnimationState,
 ) {
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
@@ -234,33 +259,32 @@ fun PagerView(
     Box(
         Modifier.fillMaxSize()
     ) {
-        var animState by remember { mutableStateOf(CardAnimationState.COLLAPSED) }
-        val value by animateFloatAsState(
-            if (animState == CardAnimationState.COLLAPSED) 0.5f else 1.0f,
+        val sizeAnimation by animateFloatAsState(
+            targetValue = if (animState == CardAnimationState.COLLAPSED) 0.5f else 1.0f,
+            animationSpec = tween(
+                durationMillis = 500,
+                easing = LinearEasing
+            )
         )
 
         Box(
             Modifier
                 .align(Alignment.BottomStart)
-                .padding(bottom = 16.dp)
         ) {
             HorizontalPager(
                 count = comicList.size,
                 state = pagerState,
-                contentPadding = PaddingValues(all = 16.dp),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(value)
+                    .fillMaxHeight()
             ) { page ->
                 PagerItem(
-                    imageUrl = comicList[page].imageUrl,
-                    width = value,
+                    comicModel = comicList[page],
                     onClick = {
-                        animState = when (animState) {
-                            CardAnimationState.COLLAPSED -> CardAnimationState.EXPANDED
-                            CardAnimationState.EXPANDED -> CardAnimationState.COLLAPSED
-                        }
-                    }
+                        pagerItemClick()
+                    },
+                    sizeAnimValue = sizeAnimation,
+                    animState = animState
                 )
             }
         }

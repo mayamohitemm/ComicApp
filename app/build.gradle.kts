@@ -63,6 +63,8 @@ dependencies {
     debugImplementation(DependingOn.Compose.composeUiTool)
     //Insets
     implementation(DependingOn.Accompanist.insets)
+    //System ui controller
+    implementation(DependingOn.Accompanist.systemUiController)
     //Hilt
     implementation(DependingOn.Hilt.hiltAndroid)
     implementation(DependingOn.Hilt.hiltNavigation)
